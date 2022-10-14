@@ -1,0 +1,13 @@
+import yfinance as yf
+import plotly.graph_objs as go
+
+data = yf.download(tickers = 'EURUSD=X' ,period ='4h', interval = '5m')
+fig = go.Figure()
+fig.add_trace(go.Candlestick(x=data.index,
+                open=data['Open'],
+                high=data['High'],
+                low=data['Low'],
+                close=data['Close'], name = 'market data'))
+fig.update_layout(
+    title=' EUR/USD ')
+fig.show()
